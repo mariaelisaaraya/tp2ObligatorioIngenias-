@@ -55,7 +55,9 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 | PUT    | `/computadoras/:id`    | Actualizar una computadora existente             |
 | DELETE | `/computadoras/:id`    | Eliminar una computadora por su ID               |
 
-
+#### Metodología de Entrega:
+- Realizar PR como lo veniamos haciendo.
+  
 #### Fecha de Entrega:
 - Miércoles 19/06/2024 17pm
 - Se utiliza de la clase 12 y 17 de junio los últimos 20 min para consultas del TP.
