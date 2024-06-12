@@ -41,7 +41,7 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
 - Manejo de Errores
 Por cada endpoint, es importante controlar los posibles errores y retornar el código de estado correspondiente. Aquí hay algunos ejemplos:
 
-    - 404 Not Found: Cuando no se encuentra una computadora con el ID proporcionado.
+    - 404 Not Found: Cuando no se encuentra una computadora con el CODIGO proporcionado.
     - 400 Bad Request: Cuando los datos enviados en el cuerpo de la solicitud no son válidos.
 
 ## Tabla de Endpoints
@@ -49,11 +49,11 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 | Método | Endpoint               | Descripción                                      |
 |--------|------------------------|--------------------------------------------------|
 | GET    | `/computadoras`        | Obtener todas las computadoras                   |
-| GET    | `/computadoras/:codigo`    | Obtener una computadora por su ID                |
+| GET    | `/computadoras/:codigo`    | Obtener una computadora por su codigo                |
 | GET    | `/computadoras/search` | Buscar computadoras por nombre o descripción     |
 | POST   | `/computadoras`        | Crear una nueva computadora                      |
 | PUT    | `/computadoras/:codigo`    | Actualizar una computadora existente             |
-| DELETE | `/computadoras/:codigo`    | Eliminar una computadora por su ID               |
+| DELETE | `/computadoras/:codigo`    | Eliminar una computadora por su codigo               |
 
 #### Metodología de Entrega:
 - Realizar PR como lo veniamos haciendo.
