@@ -49,7 +49,7 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 | Método | Endpoint               | Descripción                                      |
 |--------|------------------------|--------------------------------------------------|
 | GET    | `/computadoras`        | Obtener todas las computadoras                   |
-| GET    | `/computadoras/:id`    | Obtener una computadora por su ID                |
+| GET    | `/computadoras/:codigo`    | Obtener una computadora por su ID                |
 | GET    | `/computadoras/search` | Buscar computadoras por nombre o descripción     |
 | POST   | `/computadoras`        | Crear una nueva computadora                      |
 | PUT    | `/computadoras/:codigo`    | Actualizar una computadora existente             |
