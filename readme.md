@@ -34,7 +34,7 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Descripción: Deben aclararlo en el readme.
 
 - Actualizar un documento existente
-    - URL: /computadoras/:id
+    - URL: /computadoras/:codigo
     - Método: PUT
     - Descripción: Deben aclararlo en el readme.
 
