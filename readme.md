@@ -19,7 +19,6 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
 
-
 - Obtener un documento por su nombre o descripción
     - URL: /computadoras/search
     - Método: GET
@@ -34,12 +33,10 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Método: POST
     - Descripción: Deben aclararlo en el readme.
 
-
 - Actualizar un documento existente
     - URL: /computadoras/:id
     - Método: PUT
     - Descripción: Deben aclararlo en el readme.
-
 
 - Manejo de Errores
 Por cada endpoint, es importante controlar los posibles errores y retornar el código de estado correspondiente. Aquí hay algunos ejemplos:
@@ -58,3 +55,7 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 | PUT    | `/computadoras/:id`    | Actualizar una computadora existente             |
 | DELETE | `/computadoras/:id`    | Eliminar una computadora por su ID               |
 
+
+#### Fecha de Entrega:
+- Miércoles 19/06/2024 17pm
+- Se utiliza de la clase 12 y 17 de junio los últimos 20 min para consultas del TP.
