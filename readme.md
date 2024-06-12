@@ -14,8 +14,8 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
 
-- Obtener un documento por su ID
-    - URL: /computadoras/:id
+- Obtener un documento por su Codigo
+    - URL: /computadoras/:codigo
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
 
