@@ -52,8 +52,8 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 | GET    | `/computadoras/:id`    | Obtener una computadora por su ID                |
 | GET    | `/computadoras/search` | Buscar computadoras por nombre o descripción     |
 | POST   | `/computadoras`        | Crear una nueva computadora                      |
-| PUT    | `/computadoras/:id`    | Actualizar una computadora existente             |
-| DELETE | `/computadoras/:id`    | Eliminar una computadora por su ID               |
+| PUT    | `/computadoras/:codigo`    | Actualizar una computadora existente             |
+| DELETE | `/computadoras/:codigo`    | Eliminar una computadora por su ID               |
 
 #### Metodología de Entrega:
 - Realizar PR como lo veniamos haciendo.
