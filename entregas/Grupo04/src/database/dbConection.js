@@ -25,7 +25,7 @@ const disconnectMongoDB = async () => {
     try {
         // Cerrar la conexión con el servidor
         await client.close();
-        console.log("Se a deconectado la conexion a MongoDB");
+        console.log("Se ha deconectado la conexion a MongoDB");
         return client;
     } catch (error) {
         // Manejo de error que ocurra durante la desconexión

@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config()
+
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3008;
@@ -17,7 +20,8 @@ app.use((req, res, next) => {
 
 // GET Endpoint / (Raíz)
 app.get('/', (req, res) => {
-    res.status(200).end('Bienvenid@s')
+    res.header('Content-Type', 'text/html; charset=utf-8');
+    res.status(200).end('<h1>Bienvenid@s</h1><p>Este es nuestro catálogo de computadoras</p>')
 });
 
 // GET Endpoint /computadoras
