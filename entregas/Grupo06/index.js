@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 app.get("/computadoras", async (req, res) => {
   const client = await connectToMongoDB();
   if (!client) {
-    res.status(500).send("Error al conectar con la base de datos");
+    res.status(503).send("Error al conectar con la base de datos");
     return;
   }
   const db = client.db("Grupo06");
@@ -50,7 +50,7 @@ app.get("/computadoras/:codigo", async (req, res) => {
 
   const client = await connectToMongoDB();
   if (!client) {
-    res.status(500).send("Error al conectarse a MongoDB");
+    res.status(503).send("Error al conectarse a MongoDB");
     return;
   }
 
