@@ -95,19 +95,25 @@ app.get("/computadoras/search/:search", async (req, res) => {
 app.post("/computadoras", async (req, res) => {
     const nuevaCompu = req.body
     console.log(req.body)
-    if(nuevaCompu === undefined) {
+    if(Object.keys(nuevaCompu).length === 0){
         res.status(400).send("Error en el formato de datos a crear.");
         return;
     }
 
     const client = await connectToMongoDB();
     if(!client){
-        res.status(500).send("Error al conectar con base de datos");
+        res.status(503).send("Error al conectar con base de datos");
         return;
     }
 
     const db = client.db('Grupo06')
     const collection = await db.collection('computadoras')
+    
+    if (await collection.findOne({codigo: nuevaCompu.codigo})) {
+        res.status(501).send('Ya existe una computadora con ese codigo')
+        return      
+    }
+
     collection.insertOne(nuevaCompu)
     .then(() => {
 
@@ -116,7 +122,7 @@ app.post("/computadoras", async (req, res) => {
 
     }).catch(err => {
         console.error(err)
-        res.status(500).send('Error al crear')
+        res.status(500).send('Error al crear un nuevo producto')
 
     }).finally(async () => { await disconnectToMongoDB() })
 
