@@ -60,7 +60,33 @@ app.get("/computadoras/search/:search", async (req, res) => {
 
 //Endpoint POST para agregar una computadora
 app.post("/computadoras", async (req, res) => {
-    res.status(501).send("NO IMPLEMENTADO");
+    const nuevaCompu = req.body
+    console.log(req.body)
+    if(nuevaCompu === undefined) {
+        res.status(400).send("Error en el formato de datos a crear.");
+        return;
+    }
+
+    const client = await connectToMongoDB();
+    if(!client){
+        res.status(500).send("Error al conectar con base de datos");
+        return;
+    }
+
+    const db = client.db('Grupo06')
+    const collection = await db.collection('computadoras')
+    collection.insertOne(nuevaCompu)
+    .then(() => {
+
+        console.log("Nueva computadora creada con exito: ")
+        res.status(201).send(nuevaCompu)
+
+    }).catch(err => {
+        console.error(err)
+        res.status(500).send('Error al crear')
+
+    }).finally(async () => { await disconnectToMongoDB() })
+
 });
 
 //Endpoint PUT para modificar una computadora
@@ -128,6 +154,7 @@ app.get("*", (req, res) => {
 201 Created: La solicitud ha tenido éxito y se ha creado o autualizado recurso.
 400 Bad Request: La solicitud contiene sintaxis incorrecta o no puede procesarse.
 404 Not Found: El servidor no pudo encontrar el contenido solicitado.
+500 Internal Server Error : Indica que ante una solicitud a nuestro servidor, este no pudo completarla.
 501 Not Implemented: La solicitud no se ha implementado.
 503 Service Unavailable: El servidor no está disponible.
 */
