@@ -1,4 +1,7 @@
-const { getAllComputer } = require('./src/controller/computerController.js');
+const {
+    getAllComputer,
+    addNewComputer
+} = require('./src/controller/computerController.js');
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -45,6 +48,14 @@ app.get('/computadoras/search', async (req, res) => {
 
 // POST Endpoint /computadoras
 app.post('/computadoras', async (req, res) => {
+    const newData = req.body;
+
+    if (!newData) {
+        res.status(400).send('Error en el formato de los datos')
+    }
+
+    const result = await addNewComputer(newData);
+    res.status(result.status).send(result.msj);
 })
 
 // PUT Endpoint /computadoras/:codigo
