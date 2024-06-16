@@ -19,7 +19,7 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
 
-- Obtener un documento por su nombre o descripción
+- Obtener un documento por su nombre o categoría.
     - URL: /computadoras/search
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
@@ -48,12 +48,12 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 
 | Método | Endpoint               | Descripción                                      |
 |--------|------------------------|--------------------------------------------------|
-| GET    | `/computadoras`        | Obtener todas las computadoras                   |
-| GET    | `/computadoras/:codigo`    | Obtener una computadora por su codigo                |
-| GET    | `/computadoras/search` | Buscar computadoras por nombre o descripción     |
-| POST   | `/computadoras`        | Crear una nueva computadora                      |
-| PUT    | `/computadoras/:codigo`    | Actualizar una computadora existente             |
-| DELETE | `/computadoras/:codigo`    | Eliminar una computadora por su codigo               |
+| GET    | `/computadoras`        | Explicar ustedes                   |
+| GET    | `/computadoras/:codigo`    | Explicar ustedes                |
+| GET    | `/computadoras/search` | Explicar ustedes     |
+| POST   | `/computadoras`        | Explicar ustedes                      |
+| PUT    | `/computadoras/:codigo`    | Explicar ustedes             |
+| DELETE | `/computadoras/:codigo`    | Explicar ustedes               |
 
 #### Metodología de Entrega:
 - Realizar PR como lo veniamos haciendo.
