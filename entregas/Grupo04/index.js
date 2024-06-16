@@ -1,3 +1,4 @@
+const { getAllComputer } = require('./src/controller/computerController.js');
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -26,6 +27,12 @@ app.get('/', (req, res) => {
 
 // GET Endpoint /computadoras
 app.get('/computadoras', async (req, res) => {
+    try {
+        const result = await getAllComputer();
+        res.json(result);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
 
 // GET Endpoint /computadoras/:codigo
