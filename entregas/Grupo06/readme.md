@@ -67,10 +67,14 @@ Antes de comenzar, asegúrarse de tener instalado lo siguiente en tu entorno de 
 -   **DELETE /computadoras/**: Eliminar una computadora 
 
 
-### Ejemplos de Respuestas
+### Testing de los Endpoints
 
-Se adjunta en la carpeta **assets** los archivos de imagen con los endpoints y los codigos de errores.
+Se adjunta en la carpeta **assets** las imágenes de prueba de los endpoints y los codigos de errores.
+Algunos errores, como los referentes a conexión con el servidor de MongoDB, se probaron una sola vez y no en
+todos los endpoints, ya que seguían la misma lógica. 
 La carpeta se encuentra disponible en `tp2ObligatorioIngenias-/entregas/Grupo06/assets`
+
+
 
     
 
