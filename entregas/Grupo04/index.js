@@ -1,6 +1,7 @@
 const {
     getAllComputer,
-    addNewComputer
+    addNewComputer,
+    getComputerId
 } = require('./src/controller/computerController.js');
 const dotenv = require('dotenv');
 dotenv.config()
@@ -40,7 +41,11 @@ app.get('/computadoras', async (req, res) => {
 
 // GET Endpoint /computadoras/:codigo
 app.get('/computadoras/:codigo', async (req, res) => {
+    const compuID = parseInt(req.params.codigo) || 0
+    const result = await getComputerId(compuID);
+    res.json(result);
 })
+
 
 // GET Endpoint /computadoras/search
 app.get('/computadoras/search', async (req, res) => {
@@ -68,6 +73,10 @@ app.delete('/computadoras/:codigo', async (req, res) => {
 
 // GET Endpoint /*
 app.get('*', (req, res) => {
+    res.json({
+        error: "404",
+        message: "No se encuentra la ruta solicitada",
+      });
 });
 
 app.listen(PORT, () => {

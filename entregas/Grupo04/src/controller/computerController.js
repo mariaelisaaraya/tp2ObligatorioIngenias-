@@ -21,6 +21,24 @@ const getAllComputer = async () => {
     }
 }
 
+// GET COMPUTADORA POR CODIGO
+async function getComputerId(compuID){
+    const db = await connectToMongoDB();
+    if (!db) {
+        return res.status(500).send('Error al conectar a la base de datos');
+    }
+        const data = db.db('Tecnología');
+        const computer = await data.collection('Computadoras').findOne({codigo: compuID})
+        await disconnectMongoDB();
+    
+        if(!computer){
+            return ('No se encontro la computadora con el CODIGO '+ compuID);
+        }else{
+           return (computer) ;
+        }
+    
+}
+
 // POST
 const addNewComputer = async (newData) => {
     let result = {};
@@ -50,4 +68,4 @@ const addNewComputer = async (newData) => {
     return result;
 };
 
-module.exports = { getAllComputer, addNewComputer };
+module.exports = { getAllComputer, addNewComputer , getComputerId };
