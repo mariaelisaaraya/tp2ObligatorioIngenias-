@@ -185,8 +185,43 @@ app.put("/computadoras/:codigo", async (req, res) => {
 });
 
 //Endpoint DELETE para eliminar una computadora
+
 app.delete("/computadoras/:codigo", async (req, res) => {
-  res.status(501).send("NO IMPLEMENTADO");
+  const codigo = parseInt(req.params.codigo);
+
+  if (isNaN(codigo)) {
+    res.status(400).send('Código inválido');
+    return;
+  }
+
+  let client;
+
+  try {
+    client = await connectToMongoDB();
+    if (!client) {
+      res.status(500).send('Error al conectarse a MongoDB');
+      return;
+    }
+
+    const db = client.db('Grupo06');
+    const collection = db.collection('computadoras');
+
+    const result = await collection.deleteOne({ codigo });
+
+    if (result.deletedCount === 0) {
+      res.status(404).send('Producto no encontrado');
+    } else {
+      console.log('Producto eliminado');
+      res.status(200).send('Producto eliminado');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error al eliminar producto');
+  } finally {
+    if (client) {
+      await disconnectToMongoDB(client);
+    }
+  }
 });
 
 //Endpoint NOT FOUND
