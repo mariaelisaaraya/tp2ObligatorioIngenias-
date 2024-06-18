@@ -50,19 +50,20 @@ async function getComputerNameAndCategory(compuName, compuCategory) {
     if (compuName && compuCategory) {
         query = {
             $or: [
-                { nombre: compuName },
-                { categoria: compuCategory }
+                { nombre: { $regex: compuName, $options: 'i' } }, 
+                { categoria: { $regex: compuCategory, $options: 'i' } }
             ]
         };
     } else if (compuName) {
-        query = { nombre: compuName };
+        query = { nombre: { $regex: compuName, $options: 'i' }};
     } else if (compuCategory) {
-        query = { categoria: compuCategory };
+        query = { categoria: { $regex: compuCategory, $options: 'i' }  };
     } else {
         await disconnectMongoDB();
         return ('La búsqueda debe contener un nombre o una descripción');
     }
-    const computer = await data.collection('Computadoras').findOne(query)
+    const cursor = await data.collection('Computadoras').find(query);
+    const computer = await cursor.toArray();
     await disconnectMongoDB();
 
     if (!computer) {
