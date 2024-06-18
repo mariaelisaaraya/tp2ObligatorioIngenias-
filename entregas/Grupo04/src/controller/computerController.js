@@ -22,55 +22,55 @@ const getAllComputer = async () => {
 }
 
 // GET COMPUTADORA POR CODIGO
-async function getComputerId(compuID){
+async function getComputerId(compuID) {
     const db = await connectToMongoDB();
     if (!db) {
         return res.status(500).send('Error al conectar a la base de datos');
     }
-        const data = db.db('Tecnología');
-        const computer = await data.collection('Computadoras').findOne({codigo: compuID})
-        await disconnectMongoDB();
-    
-        if(!computer){
-            return ('No se encontro la computadora con el CODIGO '+ compuID);
-        }else{
-           return (computer) ;
-        }
-    
+    const data = db.db('Tecnología');
+    const computer = await data.collection('Computadoras').findOne({ codigo: compuID })
+    await disconnectMongoDB();
+
+    if (!computer) {
+        return ('No se encontro la computadora con el CODIGO ' + compuID);
+    } else {
+        return (computer);
+    }
+
 }
 
 // GET COMPUTADORA POR NOMBRE Y DESCRIPCION
-async function getComputerNameAndDescription(compuName, compuDescription){
+async function getComputerNameAndCategory(compuName, compuCategory) {
     const db = await connectToMongoDB();
     if (!db) {
         return res.status(500).send('Error al conectar a la base de datos');
     }
-        const data = db.db('Tecnología');
-        let query = {};
-        if(compuName && compuDescription){
-            query = {
-                $or: [
-                    {nombre: compuName},
-                    {categoria: compuDescription}
-                ]
-            };
-        }else if(compuName){
-            query = {nombre: compuName};
-        }else if(compuDescription){
-            query = {categoria: compuDescription};
-        }else {
-            await disconnectMongoDB();
-            return ('La búsqueda debe contener un nombre o una descripción');
-        }
-        const computer = await data.collection('Computadoras').findOne(query)
+    const data = db.db('Tecnología');
+    let query = {};
+    if (compuName && compuCategory) {
+        query = {
+            $or: [
+                { nombre: compuName },
+                { categoria: compuCategory }
+            ]
+        };
+    } else if (compuName) {
+        query = { nombre: compuName };
+    } else if (compuCategory) {
+        query = { categoria: compuCategory };
+    } else {
         await disconnectMongoDB();
-    
-        if(!computer){
-            return ('No se encontro la computadora con el NOMBRE '+ compuName + ' o DESCRIPCION '+ compuDescription);
-        }else{
-           return (computer) ;
-        }
-    
+        return ('La búsqueda debe contener un nombre o una descripción');
+    }
+    const computer = await data.collection('Computadoras').findOne(query)
+    await disconnectMongoDB();
+
+    if (!computer) {
+        return ('No se encontro la computadora con el NOMBRE ' + compuName + ' o DESCRIPCION ' + compuCategory);
+    } else {
+        return (computer);
+    }
+
 }
 
 // POST
@@ -115,13 +115,13 @@ const updateComputer = async (id, newData) => {
         const collection = data.collection('Computadoras');
 
         // Se verifica si el articulo existe
-        const computerExists = await collection.findOne({codigo: id});
+        const computerExists = await collection.findOne({ codigo: id });
         if (!computerExists) {
             return { success: false, status: 404, msj: 'Artículo no encontrado!' };
         }
 
         // Si el articulo existe se actualiza
-        await collection.updateOne({codigo: id}, {$set: newData});
+        await collection.updateOne({ codigo: id }, { $set: newData });
         return { success: true, status: 201, msj: 'Artículo actualizado exitosamente!' };
 
     } catch (error) {
@@ -163,4 +163,4 @@ const deleteComputer = async (id) => {
 };
 
 
-module.exports = { getAllComputer, addNewComputer , getComputerId, updateComputer, deleteComputer, getComputerNameAndDescription };
+module.exports = { getAllComputer, addNewComputer, getComputerId, updateComputer, deleteComputer, getComputerNameAndCategory };
