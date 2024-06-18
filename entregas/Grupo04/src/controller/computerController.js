@@ -39,6 +39,40 @@ async function getComputerId(compuID){
     
 }
 
+// GET COMPUTADORA POR NOMBRE Y DESCRIPCION
+async function getComputerNameAndDescription(compuName, compuDescription){
+    const db = await connectToMongoDB();
+    if (!db) {
+        return res.status(500).send('Error al conectar a la base de datos');
+    }
+        const data = db.db('Tecnología');
+        let query = {};
+        if(compuName && compuDescription){
+            query = {
+                $or: [
+                    {nombre: compuName},
+                    {categoria: compuDescription}
+                ]
+            };
+        }else if(compuName){
+            query = {nombre: compuName};
+        }else if(compuDescription){
+            query = {categoria: compuDescription};
+        }else {
+            await disconnectMongoDB();
+            return ('La búsqueda debe contener un nombre o una descripción');
+        }
+        const computer = await data.collection('Computadoras').findOne(query)
+        await disconnectMongoDB();
+    
+        if(!computer){
+            return ('No se encontro la computadora con el NOMBRE '+ compuName + ' o DESCRIPCION '+ compuDescription);
+        }else{
+           return (computer) ;
+        }
+    
+}
+
 // POST
 const addNewComputer = async (newData) => {
     let result = {};
@@ -99,4 +133,34 @@ const updateComputer = async (id, newData) => {
     }
 };
 
-module.exports = { getAllComputer, addNewComputer , getComputerId, updateComputer };
+// DELETE computadora por id
+const deleteComputer = async (id) => {
+    let result = {};
+
+    try {
+        const db = await connectToMongoDB();
+
+        if (!db) {
+            return res.status(500).send('Error al conectar a la base de datos');
+        }
+
+        const data = db.db('Tecnología');
+        const collection = data.collection('Computadoras');
+
+        await collection.deleteOne({ codigo: id });
+        result = { success: true, status: 200, msj: 'Computadora eliminada exitosamente!' };
+
+    } catch (error) {
+        console.error('Error al eliminar la computadora', error);
+        res.status(500).send('Error al eliminar la computadora!');
+    } finally {
+        // Desconectar de MongoDB
+        await disconnectMongoDB();
+    }
+
+    console.log(result);
+    return result;
+};
+
+
+module.exports = { getAllComputer, addNewComputer , getComputerId, updateComputer, deleteComputer, getComputerNameAndDescription };
