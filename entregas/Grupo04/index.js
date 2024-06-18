@@ -2,7 +2,7 @@ const {
     getAllComputer,
     addNewComputer,
     getComputerId,
-    getComputerNameAndDescription,
+    getComputerNameAndCategory,
     updateComputer,
     deleteComputer
 } = require('./src/controller/computerController.js');
@@ -36,7 +36,11 @@ app.get('/', (req, res) => {
 app.get('/computadoras', async (req, res) => {
     try {
         const result = await getAllComputer();
-        res.json(result);
+
+        result && result.length > 0
+            ? res.json(result)
+            : res.status(404).json({ message: 'No se encontraron datos' });
+
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -44,10 +48,10 @@ app.get('/computadoras', async (req, res) => {
 
 
 app.get('/computadoras/search', async (req, res) => {
-    const {compuName, compuDescription} = req.query;
+    const { compuName, compuCategory } = req.query;
 
     try {
-        const result = await getComputerNameAndDescription(compuName, compuDescription);
+        const result = await getComputerNameAndCategory(compuName, compuCategory);
         if (typeof result === 'string') {
             // Si el resultado es un string, asumimos que es un mensaje de error
             res.status(400).send(result);
@@ -77,8 +81,13 @@ app.post('/computadoras', async (req, res) => {
         res.status(400).send('Error en el formato de los datos')
     }
 
-    const result = await addNewComputer(newData);
-    res.status(result.status).send(result.msj);
+    try {
+        const result = await addNewComputer(newData);
+        return res.status(result.status).send(result.msj);
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+
 })
 
 // PUT Endpoint /computadoras/:codigo
@@ -106,7 +115,7 @@ app.put('/computadoras/:codigo', async (req, res) => {
 
 // DELETE Endpoint /computadoras/:codigo
 app.delete('/computadoras/:codigo', async (req, res) => {
-    try{
+    try {
         const id = parseInt(req.params.codigo) || 0
         const result = await deleteComputer(id);
         res.json(result);
@@ -121,7 +130,7 @@ app.get('*', (req, res) => {
     res.json({
         error: "404",
         message: "No se encuentra la ruta solicitada",
-      });
+    });
 });
 
 app.listen(PORT, () => {
