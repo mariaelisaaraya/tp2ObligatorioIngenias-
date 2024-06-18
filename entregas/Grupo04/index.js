@@ -2,7 +2,9 @@ const {
     getAllComputer,
     addNewComputer,
     getComputerId,
+    getComputerNameAndDescription,
     updateComputer,
+    deleteComputer
 } = require('./src/controller/computerController.js');
 const dotenv = require('dotenv');
 dotenv.config()
@@ -40,16 +42,31 @@ app.get('/computadoras', async (req, res) => {
     }
 })
 
+
+app.get('/computadoras/search', async (req, res) => {
+    const {compuName, compuDescription} = req.query;
+
+    try {
+        const result = await getComputerNameAndDescription(compuName, compuDescription);
+        if (typeof result === 'string') {
+            // Si el resultado es un string, asumimos que es un mensaje de error
+            res.status(400).send(result);
+        } else {
+            // Si el resultado no es un string, asumimos que es el objeto de la computadora
+            res.json(result);
+        }
+    } catch (error) {
+        // Manejo de errores en caso de que algo falle durante la búsqueda
+        res.status(500).send('Error interno del servidor');
+    }
+});
+
+
 // GET Endpoint /computadoras/:codigo
 app.get('/computadoras/:codigo', async (req, res) => {
     const compuID = parseInt(req.params.codigo) || 0
     const result = await getComputerId(compuID);
     res.json(result);
-})
-
-
-// GET Endpoint /computadoras/search
-app.get('/computadoras/search', async (req, res) => {
 })
 
 // POST Endpoint /computadoras
@@ -89,7 +106,15 @@ app.put('/computadoras/:codigo', async (req, res) => {
 
 // DELETE Endpoint /computadoras/:codigo
 app.delete('/computadoras/:codigo', async (req, res) => {
+    try{
+        const id = parseInt(req.params.codigo) || 0
+        const result = await deleteComputer(id);
+        res.json(result);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
+
 
 // GET Endpoint /*
 app.get('*', (req, res) => {
