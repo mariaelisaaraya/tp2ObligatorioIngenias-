@@ -1,7 +1,8 @@
 const {
     getAllComputer,
     addNewComputer,
-    getComputerId
+    getComputerId,
+    updateComputer,
 } = require('./src/controller/computerController.js');
 const dotenv = require('dotenv');
 dotenv.config()
@@ -65,6 +66,25 @@ app.post('/computadoras', async (req, res) => {
 
 // PUT Endpoint /computadoras/:codigo
 app.put('/computadoras/:codigo', async (req, res) => {
+    try {
+        const id = parseInt(req.params.codigo) || 0
+        const newData = req.body;
+
+        // Se valida que newData no esté vacío
+        if (Object.keys(newData).length === 0) {
+            return res.status(400).send('Error en el formato de los datos')
+        }
+
+        // Se valida que newData no sea false
+        if (!newData) {
+            return res.status(400).send('Error en el formato de los datos')
+        }
+
+        const result = await updateComputer(id, newData);
+        res.status(result.status).send(result.msj);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
 
 // DELETE Endpoint /computadoras/:codigo
