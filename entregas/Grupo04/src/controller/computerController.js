@@ -68,4 +68,35 @@ const addNewComputer = async (newData) => {
     return result;
 };
 
-module.exports = { getAllComputer, addNewComputer , getComputerId };
+// PUT computadora por id
+const updateComputer = async (id, newData) => {
+    try {
+        const db = await connectToMongoDB();
+
+        if (!db) {
+            return { success: false, status: 500, msj: 'Error al conectar a la base de datos' };
+        }
+
+        const data = db.db('Tecnología');
+        const collection = data.collection('Computadoras');
+
+        // Se verifica si el articulo existe
+        const computerExists = await collection.findOne({codigo: id});
+        if (!computerExists) {
+            return { success: false, status: 404, msj: 'Artículo no encontrado!' };
+        }
+
+        // Si el articulo existe se actualiza
+        await collection.updateOne({codigo: id}, {$set: newData});
+        return { success: true, status: 201, msj: 'Artículo actualizado exitosamente!' };
+
+    } catch (error) {
+        console.error('Error al actualizar el artículo', error);
+        return { success: false, status: 500, msj: 'Error al actualizar el artículo!' };
+    } finally {
+        // Desconectar de MongoDB
+        await disconnectMongoDB();
+    }
+};
+
+module.exports = { getAllComputer, addNewComputer , getComputerId, updateComputer };
