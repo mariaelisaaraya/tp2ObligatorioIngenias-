@@ -58,6 +58,7 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 #### Metodología de Entrega:
 - Realizar PR como lo veniamos haciendo.
   
-#### Fecha de Entrega:
-- Lunes 24/06/2024 17pm
-- Se utiliza de la clase del día 12 de junio los últimos 20 min para consultas del TP.
+> [!Important]
+> **Nueva Fecha de Entrega** aprovechen el fin de largo.
+> 
+> Lunes 24/06/2024 17pm
