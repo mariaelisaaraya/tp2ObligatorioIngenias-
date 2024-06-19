@@ -59,5 +59,5 @@ Por cada endpoint, es importante controlar los posibles errores y retornar el c�
 - Realizar PR como lo veniamos haciendo.
   
 #### Fecha de Entrega:
-- Miércoles 24/06/2024 17pm
+- Lunes 24/06/2024 17pm
 - Se utiliza de la clase del día 12 de junio los últimos 20 min para consultas del TP.
