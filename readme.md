@@ -14,12 +14,12 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
 
-- Obtener un documento por su ID
-    - URL: /computadoras/:id
+- Obtener un documento por su Codigo
+    - URL: /computadoras/:codigo
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
 
-- Obtener un documento por su nombre o descripción
+- Obtener un documento por su nombre o categoría.
     - URL: /computadoras/search
     - Método: GET
     - Descripción: Deben aclararlo en el readme.
@@ -34,26 +34,26 @@ La temática elegida para la base de datos es una colección de "Computadoras" y
     - Descripción: Deben aclararlo en el readme.
 
 - Actualizar un documento existente
-    - URL: /computadoras/:id
+    - URL: /computadoras/:codigo
     - Método: PUT
     - Descripción: Deben aclararlo en el readme.
 
 - Manejo de Errores
 Por cada endpoint, es importante controlar los posibles errores y retornar el código de estado correspondiente. Aquí hay algunos ejemplos:
 
-    - 404 Not Found: Cuando no se encuentra una computadora con el ID proporcionado.
+    - 404 Not Found: Cuando no se encuentra una computadora con el CODIGO proporcionado.
     - 400 Bad Request: Cuando los datos enviados en el cuerpo de la solicitud no son válidos.
 
 ## Tabla de Endpoints
 
 | Método | Endpoint               | Descripción                                      |
 |--------|------------------------|--------------------------------------------------|
-| GET    | `/computadoras`        | Obtener todas las computadoras                   |
-| GET    | `/computadoras/:id`    | Obtener una computadora por su ID                |
-| GET    | `/computadoras/search` | Buscar computadoras por nombre o descripción     |
-| POST   | `/computadoras`        | Crear una nueva computadora                      |
-| PUT    | `/computadoras/:id`    | Actualizar una computadora existente             |
-| DELETE | `/computadoras/:id`    | Eliminar una computadora por su ID               |
+| GET    | `/computadoras`        | Explicar ustedes                   |
+| GET    | `/computadoras/:codigo`    | Explicar ustedes                |
+| GET    | `/computadoras/search` | Explicar ustedes     |
+| POST   | `/computadoras`        | Explicar ustedes                      |
+| PUT    | `/computadoras/:codigo`    | Explicar ustedes             |
+| DELETE | `/computadoras/:codigo`    | Explicar ustedes               |
 
 #### Metodología de Entrega:
 - Realizar PR como lo veniamos haciendo.
