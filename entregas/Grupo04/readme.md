@@ -119,4 +119,73 @@
 
 <h2 align="center">📷 Capturas de los endpoints</h2>
 
+<p>A continuación, podrán observar capturas de pantalla de las pruebas realizadas desde la extensión <code>Thunder Client</code> en VSCode de los diferentes endpoints.</p>
+
+<h3>Endpoint GET<code>/computadoras</code></h3>
+
+<p align="center"> 
+  <img src="src/images/GETALL.jpg" alt="Endpoint-GET-ALL"/>
+</p>
+
+
+<h3>Endpoint GET<code>/computadoras/:codigo</code></h3>
+
+<p align="center"> 
+  <img src="src/images/GETBYID.jpg" alt="Endpoint-GET-BY-ID"/>
+</p>
+
+
+<h3>Endpoint GET<code>/computadoras/search</code></h3>
+
+<h4>Búsqueda por nombre:</h4>
+
+<p align="center"> 
+  <img src="src/images/GET-SEARCH-NAME.jpg" alt="Endpoint-GET-SEARCH-NAME"/>
+</p>
+
+<h4>Búsqueda por categoría:</h4>
+
+<p align="center"> 
+  <img src="src/images/GET-SEARCH-CATEGORY.jpg" alt="Endpoint-GET-SEARCH-CATEGORY"/>
+</p>
+
+
+<h3>Endpoint POST<code>/computadoras</code></h3>
+
+<p align="center"> 
+  <img src="src/images/POST.jpg" alt="Endpoint-POST"/>
+</p>
+
+<p>Luego, al obtener todas las computadoras, se observa que se agregó correctamente el artículo a la base de datos.</p>
+
+<p align="center"> 
+  <img src="src/images/GETALL-AFTERPOST.jpg" alt="Endpoint-GET-ALL-AFTER-POST"/>
+</p>
+
+
+<h3>Endpoint PUT<code>/computadoras/:codigo</code></h3>
+
+<p align="center"> 
+  <img src="src/images/PUT.jpg" alt="Endpoint-PUT"/>
+</p>
+
+<p>Luego, al volver a consultar la información de este artículo se observa que la característica se actualizó correctamente, en este caso el precio, que cuando se realizó el POST estaba en 850 y ahora en 1025.</p>
+
+<p align="center"> 
+  <img src="src/images/GETBYID-AFTERPUT.jpg" alt="Endpoint-GET-BY-ID-AFTER-PUT"/>
+</p>
+
+
+<h3>Endpoint DELETE<code>/computadoras/:codigo</code></h3>
+
+<p align="center"> 
+  <img src="src/images/DELETE.jpg" alt="Endpoint-DELETE"/>
+</p>
+
+<p>Al consultar el codigo de dicho artículo eliminado, vemos que no existe en la base de datos.</p>
+
+<p align="center"> 
+  <img src="src/images/GETBYID-AFTER-DELETE.jpg" alt="Endpoint-GET-BY-ID-AFTER-DELETE"/>
+</p>
+
 &nbsp;

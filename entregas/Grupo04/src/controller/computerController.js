@@ -32,7 +32,7 @@ async function getComputerId(compuID) {
     await disconnectMongoDB();
 
     if (!computer) {
-        return ('No se encontro la computadora con el CODIGO ' + compuID);
+        return { success: false, status: 404, msj: 'No se encontro la computadora con el CODIGO ' + compuID };
     } else {
         return (computer);
     }
