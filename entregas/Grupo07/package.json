@@ -1,0 +1,19 @@
+{
+  "name": "tp2computadoras",
+  "version": "1.0.0",
+  "description": "## Introducción",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "diacriticless": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.7.0"
+  }
+}
