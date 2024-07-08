@@ -62,7 +62,9 @@ app.put('/api/computadoras/:id',async (req, res) => {
     const data = req.body;
 
     // Si probamos ingresar por ejemplo "77a" me devuelve "77" (Error solucionado en data.controller)
+    //Esto si está solucionado lo pueden borrar, recuerden estos detalles.
     // console.log(parseInt(req.params.id))
+     //Borrar los console.log, recuerden estos detalles.
     
     if(Object.keys(data).length === 0 && data.constructor === Object){
         res.status(500).send('No se obtuvieron datos!');

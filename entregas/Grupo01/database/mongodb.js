@@ -33,4 +33,13 @@ async function disconnectFromMongoDB(){
     }
 }
 
-module.exports = {connectToMongoDB, disconnectFromMongoDB};
+// En el caso de qué el código siga creciendo siempre recomiendo de está forma ya que tiene lo siguientes beneficios:
+//-Más legible y organizada, especialmente cuando se exportan múltiples elementos.
+//-Facilita la adición de comentarios o documentación para cada elemento exportado.
+//-Hace más fácil agregar o eliminar elementos exportados en el futuro. 
+module.exports = {
+    // Conecta a la base de datos MongoDB
+    connectToMongoDB,
+      // Desconecta de la base de datos MongoDB
+    disconnectFromMongoDB
+  };

@@ -1,5 +1,7 @@
 const {connectToMongoDB, disconnectFromMongoDB} = require('../database/mongodb');
 const {checkCodeAndData,checkCode,checkComputadora,checkSearch} = require('./dataController');
+// Si están utilizando las funciones en inglés que queden todas en inglés o todas en español.
+//checkComputadora vs checkSearch
 
 async function getAllComputers(){
     const db = await connectToMongoDB();
