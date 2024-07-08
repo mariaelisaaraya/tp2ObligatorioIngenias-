@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config()
 
 //MONGODB: config db
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require('mongoDb')
 const URL = process.env.MONGO_URL_STRING || ""
 const client = new MongoClient(URL)
 
