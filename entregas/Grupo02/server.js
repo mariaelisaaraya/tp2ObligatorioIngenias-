@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
   res.status(200).end("Bienvenido a la API de productos de computación del Grupo 2!");
 });
 
+// Acá no hay un bloque try-catch para capturar y manejar excepciones que puedan ocurrir durante las operaciones asíncronas.
 app.get("/computadoras", async (req, res) => {
   const client = await connectToMongoDB();
   if (!client) {
@@ -37,6 +38,8 @@ app.get("/computadoras", async (req, res) => {
   res.status(200).json(computadoras);
 });
 
+//Acá pueden considerar separar la lógica en funciones más pequeñas y reutilizables para mejorar la legibilidad y el mantenimiento del código.
+//Pueden mejorar el registro de errores incluyendo más información contextual sobre el error.
 app.get("/computadoras/search", async (req, res) => {
   const { nombre, categoria } = req.query;
   let computadoras;
@@ -121,6 +124,18 @@ app.get("/computadoras/precio/:precio", async (req, res) => {
         .send("No se ha encontrado el producto con el precio: " + preciocompu)
     : res.status(200).json(computadoras);
 });
+/*
+- Validación de Datos de Entrada:
+    - La validación de nuevosDatos se realiza adecuadamente, pero podrían mejorar el mensaje de error y asegurarse de que la respuesta termine con un return para evitar continuar 
+      con el procesamiento.
+    - Consideren también validar que nuevosDatos tenga los campos necesarios para actualizar la computadora.
+
+- Uso de Promesas:
+    - Usar promesas (.then(), .catch(), .finally()) es válido, pero podría ser más consistente utilizar async/await para mantener un estilo uniforme.
+
+- Estructura de la Respuesta:
+    - La respuesta se envía correctamente en caso de éxito. Podrían incluir un chequeo para verificar si la actualización realmente afectó algún documento (por ejemplo, usando matchedCount).
+*/
 
 // POST
 app.post("/computadoras", async (req, res) => {
@@ -151,6 +166,7 @@ app.post("/computadoras", async (req, res) => {
     });
 });
 
+//Antes de intentar actualizar la base de datos, se puede asegurar de validar que nuevosDatos contenga todos los campos necesarios y que sean del tipo esperad
 // PUT
 app.put("/computadoras/:codigo", async (req, res) => {
   const nuevocod = req.params.codigo;
@@ -180,6 +196,8 @@ app.put("/computadoras/:codigo", async (req, res) => {
       await disconnectToMongoDB();
     });
 });
+
+// Deberían de validar que el parámetro codigo pasado en la URL sea un número válido antes de intentar convertirlo con parseInt(). Esto puede prevenir errores si el parámetro no es numérico.
 
 // Delete
 app.delete("/computadoras/:codigo", async (req, res) => {
@@ -219,3 +237,7 @@ app.listen(PORT, () =>
     `API de Productos de computación del Grupo 2 escuchando en http://localhost:${PORT}`
   )
 );
+
+/*
+Para mantener un estilo de código uniforme, podrían considerar usar async/await en lugar de .then() y .catch() para manejar las promesas en ambos endpoints, es una recomendación pero igualmente funciona.
+*/
