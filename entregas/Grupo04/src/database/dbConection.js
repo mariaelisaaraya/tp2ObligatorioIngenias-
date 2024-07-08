@@ -35,3 +35,9 @@ const disconnectMongoDB = async () => {
 };
 
 module.exports = { connectToMongoDB, disconnectMongoDB };
+
+/*
+Excelente código! Proporciona una estructura clara y eficaz para conectar y desconectar de MongoDB de manera asincrónica,
+con manejo adecuado de errores y mensajes de estado informativos.
+
+ */

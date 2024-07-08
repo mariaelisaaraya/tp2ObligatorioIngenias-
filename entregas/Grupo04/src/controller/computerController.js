@@ -1,6 +1,8 @@
 const { connectToMongoDB, disconnectMongoDB } = require('../database/dbConection');
 
 // GET ALL
+//Acá se pueden asegurar de devolver la respuesta (res) en el catch cuando ocurra un error de obtención de datos para evitar 
+//errores adicionales de res.status(...).send(...) fuera del contexto de la función de enrutamiento.
 const getAllComputer = async () => {
     const db = await connectToMongoDB();
 
@@ -22,6 +24,8 @@ const getAllComputer = async () => {
 }
 
 // GET COMPUTADORA POR CODIGO
+//Acá pueden revisar si es necesario el uso de findOne y 
+//asegurarse de manejar correctamente los casos en los que computer pueda ser null para evitar errores inesperados.
 async function getComputerId(compuID) {
     const db = await connectToMongoDB();
     if (!db) {
@@ -40,6 +44,7 @@ async function getComputerId(compuID) {
 }
 
 // GET COMPUTADORA POR NOMBRE Y DESCRIPCION
+//Acá pueden revisar si pueden simplificar la lógica condicional para mejorar la legibilidad y reducir la complejidad del código
 async function getComputerNameAndCategory(compuName, compuCategory) {
     const db = await connectToMongoDB();
     if (!db) {
@@ -163,5 +168,13 @@ const deleteComputer = async (id) => {
     return result;
 };
 
-
-module.exports = { getAllComputer, addNewComputer, getComputerId, updateComputer, deleteComputer, getComputerNameAndCategory };
+//Organizar las funciones uno abajo del otro mejora la legibilidad, la navegación y el mantenimiento del código promoviendo buenas prácticas de desarrollo y colaboración en equipo.
+module.exports = { 
+    getAllComputer, 
+    addNewComputer, 
+    getComputerId, 
+    updateComputer, 
+    deleteComputer, 
+    getComputerNameAndCategory 
+};
+//Esta forma de exportación es una práctica común y recomendada en Node.js para proyectos que requieren múltiples funciones.
