@@ -69,6 +69,63 @@ async function updateComputer(code, computer){
     return result;
 }
 
+// La clave es realizar la verificación antes de proceder con la actualización, pueden probar con eso.
+
+/*
+
+
+async function updateComputer(code, computer) {
+    // Verificar que el código y los datos sean válidos.
+    const dataOk = checkCodeAndData(code, computer);
+    if (!dataOk.state) {
+        return dataOk;
+    }
+
+    try {
+        const db = await connectToMongoDB();
+        const collection = db.db('ComputersCollection').collection('computers');
+        
+        // Verificación de campos no permitidos
+        // Modelo del objeto computadora
+        const modelComputer = {
+            codigo: 1,
+            nombre: "Desktop Gaming",
+            precio: 999.99,
+            categoria: "Desktop"
+        };
+
+        // Verificar que los campos ingresados existen en el modelo
+        const uniqueProps = Object.keys(computer).filter(key => !(key in modelComputer));
+        if (uniqueProps.length > 0) {
+            return { status: 400, msj: 'Error al actualizar computadora. Se quiere actualizar uno o varios campos que no existen!' };
+        }
+
+        // Actualizar la computadora
+        const result = await collection.updateOne(
+            { codigo: parseInt(code) },
+            { $set: computer }
+        );
+
+        // Verificar si se encontró y actualizó la computadora
+        if (result.matchedCount === 0) {
+            return { status: 404, msj: `Error al actualizar computadora, código ${code} no encontrado!` };
+        }
+
+        return { status: 200, msj: 'Computadora actualizada exitosamente!' };
+
+    } catch (err) {
+        console.error(err);
+        return { status: 500, msj: 'Error al actualizar computadora!' };
+    } finally {
+        await disconnectFromMongoDB();
+    }
+}
+
+
+*/
+
+// Pueden ir probando, igualmente si tienen alguna duda lo podemos ver en clase.
+
 async function getComputer(id){
     let result = {}
     const db = await connectToMongoDB();
