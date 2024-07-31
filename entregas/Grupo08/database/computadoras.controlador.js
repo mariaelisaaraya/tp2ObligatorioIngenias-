@@ -1,6 +1,7 @@
 
 const {conectarDB, desconectarDB} = require('../src/mongoDB');
-
+//No es necesario separar las funciones con comentarios, en clase no se realizo de está menera.
+//Nuevamente cuidado con los espacios y la identación.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 

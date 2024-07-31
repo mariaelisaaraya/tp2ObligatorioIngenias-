@@ -16,8 +16,6 @@ const PORT = process.env.PORT || 3000;
 const {conectarDB, desconectarDB} = require('./src/mongoDB');
 const {buscarPorCodigo, search, obtenerDatos, agregarProducto, actualizarProducto, borrarProducto} = require('./database/computadoras.controlador')
 
-
-
 // metodo get para obtener la lista completa
 app.get('/computadoras', async (req,res)=>{
     const respuesta = await obtenerDatos();   
@@ -47,8 +45,6 @@ const respuesta = await agregarProducto (req.body)
 res.status(respuesta[0]).send(respuesta[1]);
 })
 
-
-
 // metodo put para actualizar
 app.put('/computadoras/:codigo',async (req, res) => {
     const respuesta = await actualizarProducto(req.params.codigo, req.body)
@@ -61,7 +57,6 @@ app.delete('/computadoras/:codigo',async (req, res) => {
     const respuesta = await borrarProducto (req.params.codigo)
     res.status(respuesta[0]).send(respuesta[1]);
 })  
-    
 
 // rutas inexistentes
 app.get('*', (req, res) => {
@@ -73,3 +68,4 @@ app.listen(PORT, () => {
     console.log(`Servidor iniciado en el puerto http://localhost:${PORT}`);
 });
 
+// Cuidado con las identaciones y los espacios en cada renglón.
