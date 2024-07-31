@@ -26,6 +26,17 @@ app.get("/", (req, res) => {
   res.status(200).send("<html><body><h1>Bienvenid@s a HOME</h1></body></html>");
 });
 
+/*
+El código es super entendible y hace lo que tiene que hacer pero me gustaría dejar aclarado algunos ítems para la próxima.
+Manejo de errores: Los mensajes de error podrían ser más descriptivos para ayudar a las personas usuarias a entender mejor el problema.
+Principio DRY-Fundamental que lo veo acá- (Don't Repeat Yourself): Extraer la lógica de conexión y desconexión a MongoDB en funciones reutilizables podría 
+mejorar la reutilización y la legibilidad del código.
+Registro de eventos (Logging): Mejorar el registro de eventos añadiendo más información contextual, como cuál recurso se intentó eliminar.
+Mensajes de respuesta: Estandarizar y estructurar los mensajes de respuesta para mantener la consistencia, potencialmente utilizando formato JSON.
+Validación: Realizar validaciones adicionales sobre el parámetro codigo más allá de solo verificar si es un número, para asegurar la integridad de los datos de entrada.
+Nuevamente son consejos, realmente las felicito por el código.
+*/
+
 //Endpoint GET para obtener todas las computadoras
 
 app.get("/computadoras", async (req, res) => {
@@ -231,6 +242,9 @@ app.get("*", (req, res) => {
     message: "No se encuentra la ruta solicitada",
   });
 });
+
+//Sobre el glosario de errores no es necesario dejarlo en el código cuando ya lo tienen en el readme. 
+//Comentarios en .js intenten que sea una explicación minima de una función.
 
 /*      GLOSARIO DE ERRORES
 200 OK: Respuesta estándar para solicitudes correctas.
