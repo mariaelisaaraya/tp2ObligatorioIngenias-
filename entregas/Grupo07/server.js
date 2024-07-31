@@ -15,6 +15,7 @@ function diacriticless(palabra) {
   return palabra
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   }
+  
 //Metodo de ruta Home
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
